@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Text and File Encryption</title>
+</head>
+
+<body>
+    <div class="wrapper center">
+        <div id="header"></div>
+        <div id="information" class="box">
+            <div class="space">
+                <h2 class="center" data-toggle="info">Information</h2>
+                <div id="infomation-toggle" class="hidden" data-toggle="info">
+                    <ul>
+                        <li>This page uses <a href="https://openpgpjs.org/" target="_blank">OpenPGP.js</a> to encrypt
+                            text/files.</li>
+                        <li><strong>This encryption process takes place <u>entirely in your browser</u>.</strong>
+                        </li>
+                        <ul>
+                            <li class="critical">No information entered here is sent to any servers.</li>
+                        </ul>
+                        <li>For more information, please visit this GitHub repository: <a
+                                href="https://github.com/thisaaronm/OpenPGP-Web-App">https://github.com/thisaaronm/OpenPGP-Web-App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="recipient-selector" class="box">
+            <div class="space">
+                <h2 class="center" data-toggle="recipient">Select Recipient</h2>
+                <div id="recipient-toggle" class="hidden" data-toggle="recipient">
+                    <p>The selected user's public key will be used for encryption.</p>
+                    <select id="recipient" name="recipient">
+                        <option value=""></option>
+                        <option value="thisaaronm">Aaron M</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="text" class="box">
+            <div id="instructions-text" class="space">
+                <h2 class="center" data-toggle="text">Encrypt Text</h2>
+                <div id="text-toggle" class="hidden" data-toggle="text">
+                    <p>
+                    <ul class="ordered-list">
+                        <li>In the text area below, enter the text you wish to encrypt.</li>
+                        <li>Click the <span class="code">Encrypt</span> button.</li>
+                        <li>The entered cleartext will be replaced with the encrypted text, and a
+                            <span class="code">Copy</span> button will appear.
+                        </li>
+                        <li>Clicking the <span class="code">Copy</span> button will copy the encrypted text to your
+                            clipboard.</li>
+                    </ul>
+                    </p>
+
+                    <div id="copymessage">
+                        <p class="copymessage">Text box content has been copied to the clipboard.</p>
+                    </div>
+                    <div id="textToEncrypt" class="space hidden">
+                        <textarea id="inputText" name="inputText" placeholder="Please enter the text to be encrypted"
+                            rows="10" cols="75"></textarea>
+                    </div>
+                    <div id="btns-text" class="space">
+                            <button id="btnTextEncrypt" class="btn">Encrypt</button>
+                            <button id="btnTextReset" class="btn">Reset</button>
+                            <button id="btnTextCopy" class="btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="files" class="box">
+            <div id="instructions-files" class="space">
+                <h2 class="center" data-toggle="files">Encrypt Files</h2>
+                <div id="files-toggle" class="hidden" data-toggle="files">
+                    <ul class="ordered-list">
+                        <li>Click the button below to select the file(s) that you wish
+                            to encrypt.</li>
+                        <ul>
+                            <li><span class="critical">There is a 5 MB (5000 KB) file size limit per file.</span></li>
+                            <li>Files that meet this size limit will appear in the <em>Included Files</em> section.</li>
+                            <li>Files that do not meet this size limit will appear in the <em>Excluded Files</em>
+                                section.
+                            </li>
+                        </ul>
+                        <li>The <em>Included Files</em> list will contain downloadable links with
+                            <span class="code">.gpg</span> appended to the file name.
+                        </li>
+                        <ul>
+                            <li><span class="critical">Your original files are NOT modified.</span></li></li>
+                            <li><span class="critical">Only encrypted <em><u>copies</u></em> of your files are created.</span>
+                        </ul>
+                        <li>Click each link to save the encrypted file to your local computer.</li>
+                    </ul>
+
+                    <input type="file" id="fileSelector" class="btn hidden" name="selector" multiple>
+                    <button id="btnFileReset" class="btn">Reset</button>
+                </div>
+            </div>
+            <div id="includedFiles" class="space">
+                <h3>Included Files</h3>
+                <ol id="includedFilesList"></ol>
+            </div>
+            <div id="excludedFiles" class="space">
+                <h3 class="excluded-file">Excluded Files (exceeds size limit listed above)</h3>
+                <ol id="excludedFilesList"></ol>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <script src="openpgp.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
